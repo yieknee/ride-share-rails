@@ -1,0 +1,20 @@
+<div>
+  <h1>List of Drivers</h1>
+  <button class='tablink'>Create A New Driver</button>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>VIN</th>
+      <th>STATUS</th>
+    </tr>
+    <% @drivers.each do |driver| %>
+    <tr>
+      <th><%= driver.id %><th>
+      <th><%= link_to "#{driver.name}", driver_path(driver.id) %></th>
+      <th><%= driver.vin %><th>
+      <th><%= driver.available %><th>
+    </tr>
+    <% end %>
+  </table>
+</div>

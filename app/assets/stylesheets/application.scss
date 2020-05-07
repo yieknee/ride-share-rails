@@ -22,12 +22,37 @@
     border: none;
     color: white;
     padding: 15px 32px;
+    margin: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
 }
 
+a:link{
+    color:black;
+}
+a:visited{
+    color: black;
+}
+
+a:active {
+    color:black;
+}
 .tablink:hover {
     background-color: #777;
   }
+
+
+.createNew{
+    background-color: rgb(24, 15, 107); 
+    border: none;
+    border-radius: 30px;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

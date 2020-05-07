@@ -1,0 +1,13 @@
+
+<div>
+  <h2>Driver Name: <%= @driver.name %></h2>
+  some image
+  <h3>VIN: <%= @driver.vin %> </h3>
+  <h3>Status: <%= @driver.available %> </h3>
+  <h3>Total Earning: <%=  %> </h3>
+  <h3>Average Ratings: <%=  %> </h3>
+
+  <button class='tablink'>Make Available</button> <%# this will toggle availability depending on if the driver is currently on a trip %>
+  <button class='tablink'>Edit Driver</button> <%# this will be linked to a edit action %>
+  <button class='tablink'>Delete Driver</button> <%# this will be linked to a delete action %>
+</div>

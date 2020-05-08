@@ -7,7 +7,7 @@
   <button class='tablink'><%= link_to "Edit Passenger", edit_passenger_path(@passenger) %></button>
   
   <button class='tablink'> <%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
-  <button class='tablink'>Create a New Trip</button>
+  <button class='tablink'> <%= link_to 'Create a New Trip', trips_path(@passenger.id), method: :post %></button>
    
 </div>
 <div>

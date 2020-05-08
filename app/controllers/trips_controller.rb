@@ -7,4 +7,18 @@ class TripsController < ApplicationController
       return
     end
   end
+
+  def create
+    @trip = Trip.new(driver_id: @driver_id, passenger_id: @passenger.id  , date: @date, rating: @rating, cost: @cost)
+    if @trip.save
+      redirect_to passenger_path(@trip.passenger_id)
+      return
+    else 
+      redirect_to passenger_path(@trip.passenger_id)
+      return
+    end
+  end
+
+  
+  
 end

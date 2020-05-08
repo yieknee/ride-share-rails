@@ -10,11 +10,22 @@
   </head>
   <header>
     <h1>Rails Ride Share</h1>
-    <nav>
-      <button class="tablink"> <%= link_to "Home", root_path %> </button>
-      <button class="tablink"><%= link_to "Drivers", drivers_path %></button>
-      <button class="tablink"><%= link_to "Passengers", passengers_path %></button>
-    </nav>
+
+    <div class="navbar">
+      <%= link_to 'Home', root_path %>
+      
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle"
+          type="button" id="dropdownMenu1" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+        Dropdown
+      </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <a class="dropdown-item" href="#!">Action</a>
+          <a class="dropdown-item" href="#!">Another action</a>
+        </div>
+      </div>
+    </div>
   </header>
 
   <body>

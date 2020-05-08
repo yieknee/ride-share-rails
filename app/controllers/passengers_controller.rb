@@ -6,7 +6,7 @@ class PassengersController < ApplicationController
   def show
     passenger_id = params[:id]
     @passenger = Passenger.find_by(id: passenger_id)
-
+    @trips = Trip.where(passenger_id: passenger_id)
     if @passenger.nil?
       head :not_found
       # redirect_to root_path

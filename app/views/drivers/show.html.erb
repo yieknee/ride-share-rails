@@ -3,11 +3,36 @@
   <h2>Driver Name: <%= @driver.name %></h2>
   some image
   <h3>VIN: <%= @driver.vin %> </h3>
-  <h3>Status: <%= @driver.available %> </h3>
-  <h3>Total Earning: <%=  %> </h3>
-  <h3>Average Ratings: <%=  %> </h3>
+  <h3> Status: <%= @driver.available ? "Available" : "Unavailable" %> </h3>
+  <h3>Total Earning: <%= @driver.total_earned.nil? ? "N/A": @driver.total_earned %></h3>
+  <h3>Average Rating: <%= @driver.average_rating.nil? ? "N/A": @driver.average_rating %> </h3>
 
   <button class='tablink'>Make Available</button> <%# this will toggle availability depending on if the driver is currently on a trip %>
   <button class='tablink'>Edit Driver</button> <%# this will be linked to a edit action %>
   <button class='tablink'>Delete Driver</button> <%# this will be linked to a delete action %>
+</div>
+
+<div>
+  <h2><%= @driver.name %>'s Trips</h2>
+  <table>
+    <tr>
+      <th>Trip ID</th>
+      <th>Trip Date</th>
+      <th>Passenger Name</th>
+      <th>Driver Name</th>
+      <th>Rating</th>
+      <th>Cost</th>
+    </tr>
+    
+    <% @trips.each do |trip| %>
+    <tr>
+      <th><%= link_to trip.id, trip_path(trip.id) %></th>
+      <th><%= trip.date %></th>
+      <th><%= link_to "#{Passenger.find_by(id: trip.passenger_id).name}", passenger_path(trip.passenger_id)%></th>
+      <th><%= link_to @driver.name, driver_path(@driver.id) %></th>
+      <th><%= trip.rating %></th>
+      <th><%= trip.cost %></th>
+    </tr>
+    <% end %>
+  </table>
 </div>

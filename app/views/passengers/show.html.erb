@@ -2,11 +2,36 @@
   <h2>Passenger Name: <%= @passenger.name %></h2>
   some image
   <h3>Phone_number: <%= @passenger.phone_num %> </h3>
-  <h3>Total_charged: <%=  %> </h3>
-  
+  <h3>Total_charged: <%= @passenger.total_charged.nil? ? "N/A": @passenger.total_charged %></h3>
 
-  
   <button class='tablink'>Edit Passenger</button>
   <button class='tablink'>Delete Passenger</button> 
-  <button class='tablink'>Create a New Trip</button> 
+  <button class='tablink'>Create a New Trip</button>
+   
 </div>
+<div>
+  <h2><%= @passenger.name %>'s Trips</h2>
+  <table>
+    <tr>
+      <th>Trip ID</th>
+      <th>Trip Date</th>
+      <th>Passenger Name</th>
+      <th>Driver Name</th>
+      <th>Rating</th>
+      <th>Cost</th>
+    </tr>
+    
+    <% @trips.each do |trip| %>
+    <tr>
+      <th><%= link_to trip.id, trip_path(trip.id) %></th>
+      <th><%= trip.date %></th>
+      <th><%= link_to "#{@passenger.name}", passenger_path(@passenger.id)%></th>
+      <th><%= link_to "#{Driver.find_by(id: trip.driver_id).name}", driver_path(trip.driver_id)%></th>
+      <th><%= trip.driver_id %></th>
+      <th><%= trip.rating %></th>
+      <th><%= trip.cost %></th>
+    </tr>
+    <% end %>
+  </table>
+</div>
+

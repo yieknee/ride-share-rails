@@ -13,7 +13,7 @@
       <th><%= driver.id %><th>
       <th><%= link_to "#{driver.name}", driver_path(driver.id) %></th>
       <th><%= driver.vin %><th>
-      <th><%= driver.available %><th>
+      <th><%= driver.available ? "Available" : "Unavailable"%><th>
     </tr>
     <% end %>
   </table>

@@ -4,8 +4,9 @@
   <h3>Phone_number: <%= @passenger.phone_num %> </h3>
   <h3>Total_charged: <%= @passenger.total_charged.nil? ? "N/A": @passenger.total_charged %></h3>
 
-  <button class='tablink'>Edit Passenger</button>
-  <button class='tablink'>Delete Passenger</button> 
+  <button class='tablink'><%= link_to "Edit Passenger", edit_passenger_path(@passenger) %></button>
+  
+  <button class='tablink'> <%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
   <button class='tablink'>Create a New Trip</button>
    
 </div>

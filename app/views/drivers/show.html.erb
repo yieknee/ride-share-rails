@@ -8,8 +8,8 @@
   <h3>Average Rating: <%= @driver.average_rating.nil? ? "N/A": @driver.average_rating %> </h3>
 
   <button class='tablink'>Make Available</button> <%# this will toggle availability depending on if the driver is currently on a trip %>
-  <button class='tablink'>Edit Driver</button> <%# this will be linked to a edit action %>
-  <button class='tablink'>Delete Driver</button> <%# this will be linked to a delete action %>
+  <button class='tablink'><%= link_to "Edit driver", edit_driver_path(@driver) %></button>
+  <button class='tablink'> <%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
 </div>
 
 <div>

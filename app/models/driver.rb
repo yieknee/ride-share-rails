@@ -29,4 +29,9 @@ class Driver < ApplicationRecord
 
   end
 
+  def total_trips
+    trips_with_driver_id = self.trips.where(driver_id: id)
+    return trips_with_driver_id.count
+  end
+
 end

@@ -10,10 +10,10 @@
     </tr>
     <% @drivers.each do |driver| %>
     <tr>
-      <th><%= driver.id %><th>
-      <th><%= link_to "#{driver.name}", driver_path(driver.id) %></th>
-      <th><%= driver.vin %><th>
-      <th><%= driver.available ? "Available" : "Unavailable"%><th>
+      <td><%= driver.id %><td>
+      <td><%= link_to "#{driver.name}", driver_path(driver.id) %></td>
+      <td><%= driver.vin %><td>
+      <td><%= driver.available ? "Available" : "Unavailable"%><td>
     </tr>
     <% end %>
   </table>

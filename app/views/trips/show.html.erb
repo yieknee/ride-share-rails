@@ -6,7 +6,7 @@
   <h3>Passenger Name: <%= link_to "#{Passenger.find_by(id: @trip.passenger_id).name}", passenger_path(@trip.passenger_id)%>
   <h3>Driver Name: <%= link_to "#{Driver.find_by(id: @trip.driver_id).name}", driver_path(@trip.driver_id)%>
   <br>
-  <button class='tablink'>Edit trip</button>
-  <button class='tablink'>Delete Trip</button> 
+  <button class='tablink'><%= link_to 'Edit trip', edit_trip_path(@trip.id)  %></button>
+  <button class='tablink'><%= link_to 'Delete Trip', trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure?"} %></button> 
    
 </div>

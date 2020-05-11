@@ -12,5 +12,8 @@ class Passenger < ApplicationRecord
 
     return sum
   end
+
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :phone_num, presence: true#, format: /\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})/
   
 end

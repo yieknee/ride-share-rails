@@ -1,0 +1,9 @@
+<%= form_with model: @trip do |f| %>
+  <p>Please provide the following information to edit your trip rating in our database:</p>
+  <p> Please rate the driver from 1 to 5 </p>
+  
+  <%= f.label :rating %>
+  <%= f.select :rating, [1,2,3,4,5] %>
+
+  <%= f.submit "Edit Rating" %>
+<% end %>

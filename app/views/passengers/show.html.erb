@@ -7,7 +7,7 @@
   <button class='tablink'><%= link_to "Edit Passenger", edit_passenger_path(@passenger) %></button>
   
   <button class='tablink'> <%= link_to "Delete Passenger", passenger_path(@passenger), method: :delete, data: {confirm: "Are you sure?"} %>
-  <button class='tablink'> <%= link_to 'Create a New Trip', trips_path(@passenger.id), method: :post %></button>
+  <button class='tablink'> <%= link_to 'Create a New Trip', passenger_trips_path(@passenger.id), method: :post %></button>
    
 </div>
 <div>
@@ -28,7 +28,6 @@
       <td><%= trip.date %></td>
       <td><%= link_to "#{@passenger.name}", passenger_path(@passenger.id)%></td>
       <td><%= link_to "#{Driver.find_by(id: trip.driver_id).name}", driver_path(trip.driver_id)%></td>
-      <td><%= trip.driver_id %></td>
       <td><%= trip.rating %></td>
       <td><%= trip.cost %></td>
     </tr>

@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   end
 
   resources :trips, only: [:show]
+
+  patch '/drivers/:id/available', to: 'drivers#availability', as: 'available_driver'
 end

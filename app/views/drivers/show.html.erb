@@ -8,7 +8,7 @@
   <h3>Total Trips: <%= @driver.total_trips.nil? ? "N/A": @driver.total_trips %></h3>
   <h3>Average Rating: <%= @driver.average_rating.nil? ? "N/A": @driver.average_rating %> </h3>
 
-  <button class='tablink'>Make Available</button> <%# this will toggle availability depending on if the driver is currently on a trip %>
+  <button class='tablink'><%= @driver.available ? (link_to 'Make Unavailable', available_driver_path(@driver.id), method: :patch) : (link_to 'Make Available', available_driver_path(@driver.id), method: :patch)%></button> <%# this will toggle availability depending on if the driver is currently on a trip %>
   <button class='tablink'><%= link_to "Edit driver", edit_driver_path(@driver) %></button>
   <button class='tablink'> <%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
 </div>

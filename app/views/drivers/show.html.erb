@@ -27,7 +27,7 @@
     
     <% @trips.each do |trip| %>
     <tr>
-      <td><%= link_to trip.id, trip_path(trip.id) %></td>
+      <td><%= link_to trip.id, driver_trip_path(trip.id) %></td>
       <td><%= trip.date %></td>
       <td><%= link_to "#{Passenger.find_by(id: trip.passenger_id).name}", passenger_path(trip.passenger_id)%></td>
       <td><%= link_to @driver.name, driver_path(@driver.id) %></td>

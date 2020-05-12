@@ -8,7 +8,7 @@ class DriversController < ApplicationController
     @driver= Driver.find_by(id: driver_id)
     @trips = Trip.where(driver_id: driver_id)
     if @driver.nil?
-      redirect_to drivers_path
+      head :not_found
       return
     end
   end
@@ -33,7 +33,7 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
-      head :not_found
+      redirect_to drivers_path 
       return
     end
   end
@@ -47,7 +47,7 @@ class DriversController < ApplicationController
       redirect_to drivers_path 
       return
     else 
-      render :edit 
+      render :edit
       return
     end
   end

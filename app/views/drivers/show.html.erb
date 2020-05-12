@@ -32,7 +32,7 @@
       <td><%= link_to "#{Passenger.find_by(id: trip.passenger_id).name}", passenger_path(trip.passenger_id)%></td>
       <td><%= link_to @driver.name, driver_path(@driver.id) %></td>
       <td><%= trip.rating %></td>
-      <td><%= trip.cost %></td>
+      <td><%= "$#{'%.2f' % (trip.cost/100.00)}" %></td>
     </tr>
     <% end %>
   </table>

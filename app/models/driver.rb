@@ -13,7 +13,7 @@ class Driver < ApplicationRecord
     fee = 165 * total_trips
     earned = (sum - fee)* 0.8
     earned_in_dollars = earned/100
-    return "$ #{earned_in_dollars.round(2)}"
+    return "$#{'%.2f' % earned_in_dollars}"
   end
 
   def average_rating

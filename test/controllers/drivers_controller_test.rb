@@ -113,17 +113,35 @@ describe DriversController do
       # Assign the existing driver's id to a local variable
       # Set up the form data
       driver = Driver.create(name: 'Bob', vin: '123abc')
-      get(edit_driver_path(driver.id))
       params = {driver:{name: 'Bob', vin: '234bcd'}}
       # Act-Assert
       # Ensure that there is no change in Driver.count
-      patch(driver_path(driver.id), params: params) 
+      get(edit_driver_path(driver.id)) 
+      patch(driver_path({driver:{name: 'Bob', vin: '234bcd'}}))
       # Assert
       # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
       # Check that the controller redirected the user
-      Driver.count.must_equal 1
-      driver.vin.must_equal '234bcd'
+      expect(Driver.count).must_equal 1
+      expect(driver.vin).must_equal params[:driver][:vin]
       must_respond_with :redirect
+
+
+#    THE BEFORE CODE FOR THE ABOVE TEST
+# # Ensure there is an existing driver saved
+# # Assign the existing driver's id to a local variable
+# # Set up the form data
+# driver = Driver.create(name: 'Bob', vin: '123abc')
+# get(edit_driver_path(driver.id))
+# params = {driver:{name: 'Bob', vin: '234bcd'}}
+# # Act-Assert
+# # Ensure that there is no change in Driver.count
+# patch(driver_path(driver.id), params: params) 
+# # Assert
+# # Use the local variable of an existing driver's id to find the driver again, and check that its attributes are updated
+# # Check that the controller redirected the user
+# Driver.count.must_equal 1
+# driver.vin.must_equal '234bcd'
+# must_respond_with :redirect
     end
 
     it "does not update any driver if given an invalid id, and responds with a 404" do

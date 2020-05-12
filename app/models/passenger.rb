@@ -9,8 +9,8 @@ class Passenger < ApplicationRecord
     trips_with_passenger_id.each do |trip|
       sum += trip.cost
     end
-
-    return sum
+    
+    return "$#{'%.2f' % (sum/100.00)}"
   end
 
   validates :name, presence: true, length: { maximum: 50 }

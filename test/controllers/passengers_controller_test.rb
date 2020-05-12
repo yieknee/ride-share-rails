@@ -85,17 +85,30 @@ describe PassengersController do
   end
 
   describe "update" do
+    before do
+      Passenger.create(name: "tom", phone_num: "1234567")
+    end
+    let (:new_passenger_hash) {
+      {
+        passenger: {
+          name: "bob",
+          phone_num: "98765431",
+        },
+      }
+    }
     it "can update an existing passenger with valid information accurately, and redirect" do
-      # Arrange
-      passenger = Passenger.create(name: 'Bob', phone_num: '1234567')
-      params = {passenger:{name: 'Bob', phone_num: '9876543'}}
-      # Act-Assert
-      get(edit_passenger_path(passenger.id)) 
-      patch(passenger_path({passenger:{name: 'Bob', phone_num: '9876543'}}))
-      # Assert
-      expect(Passenger.count).must_equal 1
-      expect(passenger.phone_num).must_equal params[:passenger][:phone_num]
+      id = Passenger.first.id
+      expect {
+        patch passenger_path(id), params: new_passenger_hash
+      }.wont_change "Passenger.count"
+  
       must_respond_with :redirect
+  
+      passenger = Passenger.find_by(id: id)
+      expect(passenger.name).must_equal new_passenger_hash[:passenger][:name]
+      expect(passenger.phone_num).must_equal new_passenger_hash[:passenger][:phone_num]
+      
+
     end
 
     it "does not update any passenger if given an invalid id, and responds with a 404" do

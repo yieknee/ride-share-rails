@@ -1,11 +1,11 @@
 <div>
   <h2>Trip Details: 
   <h3>Trip ID: <%= @trip.id %> </h3>
-  <h3>Trip cost: <%=@trip.cost %></h3>
+  <h3>Trip cost: <%="$#{'%.2f' % (@trip.cost/100.00)}"%></h3>
   <h3>Trip rating: <%=@trip.rating %></h3>
-  <h3>Passenger Name: <%= link_to "#{Passenger.find_by(id: @trip.passenger_id).name}", passenger_path(@trip.passenger_id)%>
-  <h3>Driver Name: <%= link_to "#{Driver.find_by(id: @trip.driver_id).name}", driver_path(@trip.driver_id)%>
-  <br>
+  <h3>Passenger Name: <%= Passenger.find_by(id: @trip.passenger_id)? (link_to "#{Passenger.find_by(id: @trip.passenger_id).name}", passenger_path(@trip.passenger_id)) : "Deleted Passenger"%>
+  <h3>Driver Name: <%= Driver.find_by(id: @trip.driver_id) ? (link_to "#{Driver.find_by(id: @trip.driver_id).name}", driver_path(@trip.driver_id)) : "Deleted Driver"%>
+  <br>             
   <button class='tablink'><%= link_to 'Edit trip', edit_trip_path(@trip.id)  %></button>
   <button class='tablink'><%= link_to 'Delete Trip', trip_path(@trip.id), method: :delete, data: {confirm: "Are you sure?"} %></button> 
    

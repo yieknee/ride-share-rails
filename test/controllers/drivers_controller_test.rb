@@ -80,6 +80,7 @@ describe DriversController do
       # Assert
       # Check that the controller redirects
       expect{post(drivers_path, params: {driver:{name: 'Bob'}})}.wont_change 'Driver.count'
+      must_respond_with :bad_request
     end
   end
   
@@ -210,6 +211,7 @@ describe DriversController do
       # Assert
       # Check that the controller redirects
       expect {delete(driver_path(driver.id)) }.must_differ 'Driver.count', -1
+      must_respond_with :redirect
     end
 
     it "does not change the db when the driver does not exist, then responds with " do
@@ -222,6 +224,7 @@ describe DriversController do
       # Assert
       # Check that the controller responds or redirects with whatever your group decides
       expect {delete(driver_path(143256)) }.must_differ 'Driver.count', 0
+      must_respond_with :redirect
     end
   end
 end

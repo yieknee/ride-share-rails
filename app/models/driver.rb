@@ -18,17 +18,24 @@ class Driver < ApplicationRecord
 
   def average_rating
     trips_with_driver_id = self.trips.where(driver_id: id)
-
-    rating_sum = 0.00
     trips_count = trips_with_driver_id.count
+    rating_sum = 0.00
+    rated_trip_count = 0
+    
+    if trips_count > 0
+      trips_with_driver_id.each do |trip|
+        if trip.rating
+          rating_sum += trip.rating 
+          rated_trip_count+= 1 
+        end
+      end
 
-    trips_with_driver_id.each do |trip|
-      rating_sum += trip.rating
+      answer = rating_sum/rated_trip_count
+
+      return rating_sum == 0 ? 'N/A' : answer.round(2)
+    else
+      return 0
     end
-
-    answer = rating_sum/trips_count
-
-    return rating_sum == 0 ? 'N/A' : answer.round(2)
 
   end
 

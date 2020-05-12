@@ -139,6 +139,7 @@ describe PassengersController do
       # Act-Assert
       # Assert
       expect {delete(passenger_path(passenger.id)) }.must_differ 'Passenger.count', -1
+      must_respond_with :redirect
     end
 
     it "does not change the db when the passenger does not exist, then responds with " do
@@ -147,6 +148,7 @@ describe PassengersController do
       # Act-Assert
       # Assert
       expect {delete(passenger_path(143256)) }.must_differ 'Passenger.count', 0
+      must_respond_with :redirect
     end
   end
 end

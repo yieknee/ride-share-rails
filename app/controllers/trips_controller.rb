@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
   def show
     trip_id = params[:id]
-    @trip= Trip.find_by(id: trip_id)
+    @trip = Trip.find_by(id: trip_id)
     if @trip.nil?
       redirect_to root_path
       return
@@ -41,7 +41,7 @@ class TripsController < ApplicationController
       redirect_to passenger_path (@trip.passenger_id)
       return
     else 
-      render :edit 
+      render :edit, status: :bad_request
       return
     end
   end
@@ -50,7 +50,7 @@ class TripsController < ApplicationController
     passenger_id = params[:passenger_id]
     @trip = Trip.find_by(id: params[:id])
     if @trip.nil?
-      redirect_to trip_path
+      redirect_to root_path
       return
     end
 

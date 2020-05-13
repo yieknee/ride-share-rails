@@ -45,7 +45,7 @@ class PassengersController < ApplicationController
       head :not_found
       return
     elsif @passenger.update(passenger_params)
-      redirect_to passengers_path # go to the index so we can see the passenger in the list
+      redirect_to passenger_path # go to the index so we can see the passenger in the list
       return
     else # save failed :(
       render :edit # show the new passenger form view again

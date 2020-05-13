@@ -1,21 +1,43 @@
 require "test_helper"
 
 describe TripsController do
-  describe "show" do
+
+  before do
+    passenger = Passenger.create!(name: "bob", phone_num:"12334556")
+    driver = Driver.create!(name: "tom", vin:"asdfghjkl", available: true)
+    trip_hash = {
+      passenger_id: passenger.id,
+      driver_id: driver.id,
+      cost: 99,
+      date: Date.today
+    }
+
+    @trip = Trip.create(trip_hash)
+    
+  end
+
+  describe "show" do   # passing
+    before do
+      @trip = Trip.first
+    end
 
     it "shows a trip" do
-      # Arrange
-      passenger = Passenger.create!(name: "bob", phone_num:"12334556")
-      driver = Driver.create!(name: "tom", vin:"asdfghjkl", available: true)
-      trip = Trip.new_trip(passenger, driver)
-      # Act
-      get(trip_path(trip.id))
-      # Assert
+      
+      valid_trip_id = @trip.id
+      get trip_path(valid_trip_id)
       must_respond_with :success
+  
+    end
+
+    it "responds with redirect with an invalid trip id" do
+      
+      get(trip_path(123124124))
+      # Assert
+      must_respond_with :redirect
     end
   end
 
-  describe "create" do 
+  describe "create" do # passing
 
     it "trip increase by one and redirects" do
     passenger = Passenger.create!(name: "bob", phone_num:"12334556")
@@ -24,9 +46,13 @@ describe TripsController do
     expect{post passenger_trips_path(passenger.id)}.must_differ "Trip.count", 1
     must_redirect_to passenger_path(passenger.id)
     end
+
   end
 
   describe "edit" do
+    before do
+      @trip = Trip.first
+    end
 
     let (:new_trip_hash) {
       {
@@ -35,29 +61,74 @@ describe TripsController do
         },
       }
     }
-    it "trip edits rating" do
-      trip = Trip.create(id: 1, driver_id: 1, passenger_id: 2, date: Date.today, cost: 1234, rating:1)
-      id = Trip.first.id
-      p id
-      expect {
-        patch(trip_path(id), params: new_trip_hash)
-      }.wont_change "Trip.count"
-      p trip
-  
-      # must_respond_with :redirect
-  
-      updated_trip = Trip.find_by(id)
-      p updated_trip
-      expect(updated_trip.rating).must_equal new_trip_hash[:trip][:rating]
+    it "responds with success when getting the edit page for an existing, valid trip" do #passing
+      # Arrange
+      
+      # Act
+      get(edit_trip_path(@trip.id))
+      # Assert
+      must_respond_with :success
     end
-        
+
+    it "responds with redirect when getting the edit page for a non-existing trip" do  #passing
+      # Arrange
+      # Act
+      get(edit_trip_path(123124213))
+      # Assert
+      must_respond_with :redirect
+    end
   end
 
   describe "update" do
-    # Your tests go here
+    
+    let (:new_trip_hash) {
+      {
+        driver: {
+          rating: "3",
+          passenger_id: 5,
+          driver_id: 5,
+          cost: 99,
+          date: Date.today
+        },
+      }
+    }
+ 
+    it "will respond with not_found for invalid ids" do # passing
+      id = -1
+  
+      expect {
+        patch trip_path(id), params: new_trip_hash
+      }.wont_change "Trip.count"
+  
+      must_respond_with :not_found
+    end
+
+    it "will update a model accurately with a valid post request" do
+      
+      expect {
+        patch trip_path(@trip.id), params: new_trip_hash
+      }.wont_change "Trip.count"
+  
+      must_respond_with :redirect
+  
+      trip = Trip.find_by(id: @trip.id)
+      expect(trip.rating).must_equal new_trip_hash[:trip][:rating]
+      
+    end
   end
 
-  describe "destroy" do
-    # Your tests go here
+  describe "destroy" do #passed
+    it "destroys the trip instance in db when trip exists, then redirects" do
+     
+      expect {delete(trip_path(@trip.id)) }.must_differ 'Trip.count', -1
+      must_respond_with :redirect
+    end
+
+    it "does not change the db when the trip does not exist, then responds with " do
+    
+      expect {delete(trip_path(143256)) }.must_differ 'Trip.count', 0
+      must_respond_with :redirect
+    end
+    
   end
 end

@@ -11,10 +11,6 @@
     <h3>Total Earning: <%= @driver.total_earned.nil? ? "N/A": @driver.total_earned %></h3>
     <h3>Total Trips: <%= @driver.total_trips.nil? ? "N/A": @driver.total_trips %></h3>
     <h3>Average Rating: <%= @driver.average_rating.nil? ? "N/A": @driver.average_rating %> </h3>
-
-    <button class='tablink'><%= @driver.available ? (link_to 'Make Unavailable', available_driver_path(@driver.id), method: :patch) : (link_to 'Make Available', available_driver_path(@driver.id), method: :patch)%></button> <br>
-    <button class='tablink'><%= link_to "Edit driver", edit_driver_path(@driver) %></button> <br>
-    <button class='tablink'> <%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
   </div>
 </section>
 

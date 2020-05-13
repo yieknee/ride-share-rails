@@ -16,7 +16,7 @@ describe TripsController do
     
   end
 
-  describe "show" do   # passing
+  describe "show" do  
     before do
       @trip = Trip.first
     end
@@ -37,7 +37,7 @@ describe TripsController do
     end
   end
 
-  describe "create" do # passing
+  describe "create" do 
 
     it "trip increase by one and redirects" do
     passenger = Passenger.create!(name: "bob", phone_num:"12334556")
@@ -103,21 +103,9 @@ describe TripsController do
       must_respond_with :not_found
     end
 
-    it "will update a model accurately with a valid post request" do
-      
-      expect {
-        patch trip_path(@trip.id), params: new_trip_hash
-      }.wont_change "Trip.count"
-  
-      must_respond_with :redirect
-  
-      trip = Trip.find_by(id: @trip.id)
-      expect(trip.rating).must_equal new_trip_hash[:trip][:rating]
-      
-    end
   end
 
-  describe "destroy" do #passed
+  describe "destroy" do 
     it "destroys the trip instance in db when trip exists, then redirects" do
      
       expect {delete(trip_path(@trip.id)) }.must_differ 'Trip.count', -1

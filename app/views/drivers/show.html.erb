@@ -1,19 +1,24 @@
 
-<div>
-  <h2>Driver Name: <%= @driver.name %></h2>
-  some image
-  <h3>VIN: <%= @driver.vin %> </h3>
-  <h3> Status: <%= @driver.available ? "Available" : "Unavailable" %> </h3>
-  <h3>Total Earning: <%= @driver.total_earned.nil? ? "N/A": @driver.total_earned %></h3>
-  <h3>Total Trips: <%= @driver.total_trips.nil? ? "N/A": @driver.total_trips %></h3>
-  <h3>Average Rating: <%= @driver.average_rating.nil? ? "N/A": @driver.average_rating %> </h3>
+<section class='driver-show'>
+  <div class='driver-pic'>
+    <%= image_tag 'https://source.unsplash.com/1600x900/?people/weekly' %>
+  </div>
 
-  <button class='tablink'><%= @driver.available ? (link_to 'Make Unavailable', available_driver_path(@driver.id), method: :patch) : (link_to 'Make Available', available_driver_path(@driver.id), method: :patch)%></button> <%# this will toggle availability depending on if the driver is currently on a trip %>
-  <button class='tablink'><%= link_to "Edit driver", edit_driver_path(@driver) %></button>
-  <button class='tablink'> <%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
-</div>
+  <div class='driver-info'>
+    <h2>Driver Name: <%= @driver.name %></h2>
+    <h3>VIN: <%= @driver.vin %> </h3>
+    <h3> Status: <%= @driver.available ? "Available" : "Unavailable" %> </h3>
+    <h3>Total Earning: <%= @driver.total_earned.nil? ? "N/A": @driver.total_earned %></h3>
+    <h3>Total Trips: <%= @driver.total_trips.nil? ? "N/A": @driver.total_trips %></h3>
+    <h3>Average Rating: <%= @driver.average_rating.nil? ? "N/A": @driver.average_rating %> </h3>
 
-<div>
+    <button class='tablink'><%= @driver.available ? (link_to 'Make Unavailable', available_driver_path(@driver.id), method: :patch) : (link_to 'Make Available', available_driver_path(@driver.id), method: :patch)%></button> <br>
+    <button class='tablink'><%= link_to "Edit driver", edit_driver_path(@driver) %></button> <br>
+    <button class='tablink'> <%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %>
+  </div>
+</section>
+
+<div class='driver-trips'>
   <h2><%= @driver.name %>'s Trips</h2>
   <table>
     <tr>

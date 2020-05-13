@@ -35,7 +35,7 @@ table th{
 }
 
 .tablink{
-background-color: #E4FAF1; 
+background-color: #29AEAC; 
 border: none;
 color: black;
 padding: 15px 32px;
@@ -44,4 +44,105 @@ text-align: center;
 text-decoration: none;
 display: inline-block;
 font-size: 16px;
+color: white;
+}
+
+.btn-group{
+  margin: 30px;
+  padding: 20px;
+}
+button{
+  height: 65px;
+  width: 170px;
+}
+.dropdown-menu{
+  color: whitesmoke;
+}
+
+.logo img{
+  position: relative;
+  top: -50px;
+  width: 20%;
+  height: 30%;
+}
+
+.nav-buttons{
+  position: relative;
+  top: -300px;
+  left: 33%;
+  width: 100%;
+}
+header{
+  background-color: rgb(30, 34, 34);
+  height: 200px;
+}
+
+body{
+  background-color: whitesmoke;
+}
+
+.car img{
+  position: fixed;
+  width: 75%;
+  left: -10px;
+  height: 84%;
+  top: 190px;
+}
+
+.going img{
+  position: fixed;
+  width: 35%;
+  height: 76.6%;
+  bottom: -29px;
+  right: -10px
+}
+.tablink a{
+  color: white;
+}
+
+.driver-table{
+  position: relative;
+  left: 400px;
+  top: -95px;
+  font-family: Arial, Helvetica, sans-serif 
+}
+
+.passenger-table{
+  position: relative;
+  left: 450px;
+  top: -95px;
+  font-family: Arial, Helvetica, sans-serif 
+}
+.driver-show{
+  position: relative;
+  left: 30px;
+  width: 500px;
+  height: 500px;
+}
+.driver-info{
+  position: relative;
+  top: 15px;
+  left: 10px;
+}
+.driver-show img{
+  position: relative;
+  top: 10px;
+  width: 350px;
+  height: 350px;
+}
+
+.driver-trips{
+  position: relative;
+  text-align: center;
+  left: 600px;
+  top: -480px;
+}
+
+.driver-trips h2{
+  position: relative;
+  right: 400px;
+}
+
+a {
+  color: #29AEAC;
 }

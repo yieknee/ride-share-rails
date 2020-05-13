@@ -1,7 +1,12 @@
+<section class='driver-buttons'>
+  <button class='tablink'><%= link_to "Edit driver", edit_driver_path(@driver) %> </button> 
+  <button class='tablink'><%= link_to "Delete Driver", driver_path(@driver), method: :delete, data: {confirm: "Are you sure?"} %> </button>
+  <button class='tablink'><%= @driver.available ? (link_to 'Make Driver Unavailable', available_driver_path(@driver.id), method: :patch) : (link_to 'Make Driver Available', available_driver_path(@driver.id), method: :patch)%> </button> 
+</section>
 
 <section class='driver-show'>
   <div class='driver-pic'>
-    <%= image_tag 'https://source.unsplash.com/1600x900/?people/weekly' %>
+    <%= image_tag 'https://source.unsplash.com/1600x900/?person' %>
   </div>
 
   <div class='driver-info'>

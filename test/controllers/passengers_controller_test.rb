@@ -32,12 +32,7 @@ describe PassengersController do
     end
 
     it "responds with 404 with an invalid passenger id" do
-      # Arrange
-      # Ensure that there is an id that points to no passenger
-      
-      # Act
       get(passenger_path(123124124))
-      # Assert
       must_respond_with :not_found
     end
   end
@@ -66,19 +61,14 @@ describe PassengersController do
 
   describe "edit" do
     it "responds with success when getting the edit page for an existing, valid passenger" do
-      # Arrange
       passenger = Passenger.create(name: 'Bob', phone_num: '1234567')
-      # Act
       get(edit_passenger_path(passenger.id))
-      # Assert
       must_respond_with :success
     end
 
     it "responds with redirect when getting the edit page for a non-existing passenger" do
-      # Arrange
-      # Act
+
       get(edit_passenger_path(123124213))
-      # Assert
       must_respond_with :redirect
 
     end
@@ -121,12 +111,11 @@ describe PassengersController do
     end
 
     it "does not create a passenger if the form data violates passenger validations, and responds with a redirect" do
-      # Arrange
       passenger = Passenger.create(name: 'Bob', phone_num: '1234567')
       get(edit_passenger_path(passenger.id))
-      # Act-Assert
+
       patch(passenger_path({passenger:{name: 'Bob'}}))
-      # Assert
+
       passenger.phone_num.must_equal '1234567'
       must_respond_with :redirect
     end
@@ -134,19 +123,17 @@ describe PassengersController do
 
   describe "destroy" do
     it "destroys the passenger instance in db when passenger exists, then redirects" do
-      # Arrange
+  
       passenger = Passenger.create(name: 'Bob', phone_num: '1234567')
-      # Act-Assert
-      # Assert
+
       expect {delete(passenger_path(passenger.id)) }.must_differ 'Passenger.count', -1
       must_respond_with :redirect
     end
 
     it "does not change the db when the passenger does not exist, then responds with " do
-      # Arrange
+ 
       passenger = Passenger.create(name: 'Bob', phone_num: '1234567')
-      # Act-Assert
-      # Assert
+
       expect {delete(passenger_path(143256)) }.must_differ 'Passenger.count', 0
       must_respond_with :redirect
     end

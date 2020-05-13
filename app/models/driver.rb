@@ -1,5 +1,5 @@
 class Driver < ApplicationRecord
-  has_many :trips
+  has_many :trips, dependent: :nullify
 
   def total_earned
     trips_with_driver_id = self.trips.where(driver_id: id)
